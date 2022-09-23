@@ -24,9 +24,9 @@ export default {
   components : {ProductBox},
   props : [ "baseURL" , "products" ],
   mounted(){
-    if (this.$route.name=='AdminProduct' && !localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-    }
+    // if (this.$route.name=='AdminProduct' && !localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    // }
   }
 }
 </script>

@@ -86,7 +86,7 @@ export default {
   methods: {
     addToWishList(productId) {
       axios
-        .post(`${this.serviceURL}wishlist/add?token=${this.token}`, {
+        .post(`${this.baseURL}wishlist/add?token=${this.token}`, {
           id: productId,
         })
         .then(

@@ -51,7 +51,7 @@ data() {
 
 methods:{
     getOrder(){
-        axios.get(`${this.serviceURL}order/${this.orderID}?token=${this.token}`).then((response) => {
+        axios.get(`${this.baseURL}order/${this.orderID}?token=${this.token}`).then((response) => {
             if(response.status === 200) {
                 this.order = response.data
                 this.orderItems = this.order.orderItems

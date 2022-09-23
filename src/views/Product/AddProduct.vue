@@ -66,7 +66,7 @@ export default {
 
       await axios({
         method: 'post',
-        url: this.serviceURL+"product/add",
+        url: this.baseURL+"product",
         data : JSON.stringify(newProduct),
         headers: {
           'Content-Type': 'application/json'
@@ -86,9 +86,9 @@ export default {
     }
   },
   mounted() {
-    if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-    }
+    // if (!localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    // }
   }
 }
 </script>

@@ -23,8 +23,8 @@ import Footer from './components/Footer.vue';
 export default {
   data() {
     return {
-      baseURL: 'https://limitless-lake-55070.herokuapp.com/', // URL from the demo project
-      serviceURL: "https://secure-caverns-35338.herokuapp.com/", // Our URL
+      //baseURL: 'https://limitless-lake-55070.herokuapp.com/', // URL from the demo project
+      baseURL: "https://secure-caverns-35338.herokuapp.com/", // Our URL
       products: null,
       categories: null,
       key: 0,
@@ -39,19 +39,19 @@ export default {
       // fetch products
       
       await axios
-        .get(this.serviceURL + 'product/')          
+        .get(this.baseURL + 'product/')          
         .then((res) => (this.products = res.data )) 
         .catch((err) => console.log(err) );         
       
       //fetch categories
       await axios   
-        .get(this.serviceURL + 'category/')       
+        .get(this.baseURL + 'category/')       
         .then((res) => (this.categories = res.data))
         .catch((err) => console.log(err));
 
       //fetch cart items
       if (this.token) {
-        await axios.get(`${this.serviceURL}cart/?token=${this.token}`).then(
+        await axios.get(`${this.baseURL}cart/?token=${this.token}`).then(
           (response) => {
             if (response.status == 200) {
               // update cart

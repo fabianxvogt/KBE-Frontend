@@ -24,9 +24,9 @@ export default {
   components : {CategoryBox},
   props : [ "baseURL" , "categories" ],
   mounted(){
-    if (this.$route.name=='AdminCategory' && !localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-    }
+    // if (this.$route.name=='AdminCategory' && !localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    // }
   }
 }
 </script>

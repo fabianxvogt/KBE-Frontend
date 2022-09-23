@@ -38,7 +38,7 @@ export default {
     configureStripe() {},
 
     getAllItems() {
-      axios.get(`${this.serviceURL}cart/?token=${this.token}`).then(
+      axios.get(`${this.baseURL}cart/?token=${this.token}`).then(
         (response) => {
           if (response.status == 200) {
             let products = response.data;
@@ -63,7 +63,7 @@ export default {
     goToCheckout() {
       axios
         .post(
-          this.serviceURL + 'order/create-checkout-session',
+          this.baseURL + 'order/create-checkout-session',
           this.checkoutBodyArray
         )
         .then((response) => {

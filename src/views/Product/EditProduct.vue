@@ -50,7 +50,7 @@ export default {
   props : ["baseURL", "products", "categories"],
   methods : {
     async editProduct() {
-      axios.post(this.serviceURL+"product/update/"+this.id, this.product)
+      axios.patch(this.baseURL+"product/"+this.id, this.product)
       .then(res => {
         //sending the event to parent to handle
         this.$emit("fetchData");
@@ -65,10 +65,10 @@ export default {
     }
   },
   mounted() {
-    if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-      return;
-    }
+    // if (!localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    //   return;
+    // }
     this.id = this.$route.params.id;
     this.product = this.products.find(product => product.id == this.id);
   }

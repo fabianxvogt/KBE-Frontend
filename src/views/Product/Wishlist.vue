@@ -32,7 +32,7 @@ export default {
     fetchWishlist() {
 
       // fetch products
-      axios.get(`${this.serviceURL}wishlist/${this.token}`)
+      axios.get(`${this.baseURL}wishlist/${this.token}`)
         .then(data => this.products = data.data)
         .catch(err => console.log(err));
     }

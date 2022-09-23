@@ -48,9 +48,11 @@ export default {
         imageUrl : this.imageURL,
       }
 
+      console.log(this.baseURL+"category")
+
       await axios({
         method: 'post',
-        url: this.serviceURL+"category/create",
+        url: this.baseURL+"category",
         data : JSON.stringify(newCategory),
         headers: {
           'Content-Type': 'application/json'
@@ -70,9 +72,9 @@ export default {
     }
   },
   mounted(){
-    if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-    }
+    // if (!localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    // }
   }
 }
 </script>

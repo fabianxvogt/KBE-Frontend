@@ -114,7 +114,7 @@ export default {
     },
     deleteItem(itemId) {
       axios
-        .delete(`${this.serviceURL}cart/delete/${itemId}/?token=${this.token} `)
+        .delete(`${this.baseURL}cart/delete/${itemId}/?token=${this.token} `)
         .then(
           (response) => {
             if (response.status == 200) {

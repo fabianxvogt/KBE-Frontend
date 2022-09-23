@@ -15,9 +15,9 @@
 <script>
 export default {
   mounted() {
-    if (!localStorage.getItem('token')) {
-      this.$router.push({name : 'Signin'});
-    }
+    // if (!localStorage.getItem('token')) {
+    //   this.$router.push({name : 'Signin'});
+    // }
   }
 }
 </script>
