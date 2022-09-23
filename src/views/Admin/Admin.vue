@@ -1,5 +1,8 @@
 <template>
   <div class="adminPanel container">
+    <!-- <router-link :to="{name : 'AdminComponent'}">
+        <button type="button" class="btn btn-primary btn-lg">Admin Components</button>
+      </router-link> -->
       <router-link :to="{name : 'AdminProduct'}">
         <button type="button" class="btn btn-primary btn-lg">Admin Products</button>
       </router-link>
@@ -15,6 +18,7 @@
 <script>
 export default {
   mounted() {
+    // TODO: Uncommend once authentication is finished
     // if (!localStorage.getItem('token')) {
     //   this.$router.push({name : 'Signin'});
     // }
