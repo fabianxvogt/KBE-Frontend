@@ -39,18 +39,16 @@ export default {
       // fetch products
       
       await axios
-        .get(this.serviceURL + 'product/')          // For some reason this throws an error. 
-        .then((res) => (this.products = res.data )) // It works with the old demo project URL (this.baseURL)
-        .catch((err) => console.log(err) );         // but not with ours (this.serviceURL)
+        .get(this.serviceURL + 'product/')          
+        .then((res) => (this.products = res.data )) 
+        .catch((err) => console.log(err) );         
       
-      this.products = []    // set to empty array to avoid error
       //fetch categories
       await axios   
-        .get(this.serviceURL + 'category/')          // Same behaviour for the categories
+        .get(this.serviceURL + 'category/')       
         .then((res) => (this.categories = res.data))
         .catch((err) => console.log(err));
 
-      this.categories = []
       //fetch cart items
       if (this.token) {
         await axios.get(`${this.serviceURL}cart/?token=${this.token}`).then(
