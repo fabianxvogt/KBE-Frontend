@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center">
-        <h4 class="pt-3">Add new Component</h4>
+        <h4 class="pt-3">Add new ProductComponent</h4>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
             <label>Price</label>
             <input type="number" class="form-control" v-model="price" required>
           </div>
-          <button type="button" class="btn btn-primary" @click="addComponent">Submit</button>
+          <button type="button" class="btn btn-primary" @click="addProductComponent">Submit</button>
         </form>
       </div>
       <div class="col-3"></div>
@@ -52,10 +52,10 @@ export default {
       price : null
     }
   },
-  props : ["baseURL", "Components", "categories"],
+  props : ["baseURL", "ProductComponents", "categories"],
   methods : {
-    async addComponent() {
-      const newComponent = {
+    async addProductComponent() {
+      const newProductComponent = {
         id : this.id,
         categoryId : this.categoryId,
         name : this.name,
@@ -66,8 +66,8 @@ export default {
 
       await axios({
         method: 'post',
-        url: this.baseURL+"Component",
-        data : JSON.stringify(newComponent),
+        url: this.baseURL+"ProductComponent",
+        data : JSON.stringify(newProductComponent),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -75,9 +75,9 @@ export default {
       .then(res => {
         //sending the event to parent to handle
         this.$emit("fetchData");
-        this.$router.push({name : 'AdminComponent'});
+        this.$router.push({name : 'AdminProductComponent'});
         swal({
-          text: "Component Added Successfully!",
+          text: "ProductComponent Added Successfully!",
           icon: "success",
           closeOnClickOutside: false,
         });

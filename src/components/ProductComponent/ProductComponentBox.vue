@@ -3,22 +3,22 @@
     <div class="embed-responsive embed-responsive-16by9">
       <img
         class="card-img-top embed-responsive-item"
-        :src="Component.imageURL"
-        alt="Component Image"
+        :src="ProductComponent.imageURL"
+        alt="ProductComponent Image"
       />
     </div>
     <div class="card-body">
-      <router-link :to="{ name: 'ShowDetails', params: { id: Component.id } }"
-        ><h5 class="card-title">{{ Component.name }}</h5></router-link
+      <router-link :to="{ name: 'ShowDetails', params: { id: ProductComponent.id } }"
+        ><h5 class="card-title">{{ ProductComponent.name }}</h5></router-link
       >
-      <p class="card-text"><sup>$</sup>{{ Component.price }}</p>
+      <p class="card-text"><sup>$</sup>{{ ProductComponent.price }}</p>
       <p class="card-text font-italic">
-        {{ Component.description.substring(0, 65) }}...
+        {{ ProductComponent.description.substring(0, 65) }}...
       </p>
       <router-link
-        id="edit-Component"
-        :to="{ name: 'EditComponent', params: { id: Component.id } }"
-        v-show="$route.name == 'AdminComponent'"
+        id="edit-ProductComponent"
+        :to="{ name: 'EditProductComponent', params: { id: ProductComponent.id } }"
+        v-show="$route.name == 'AdminProductComponent'"
       >
         Edit
       </router-link>
@@ -28,13 +28,13 @@
 
 <script>
 export default {
-  name: "ComponentBox",
-  props: ["Component"],
+  name: "ProductComponentBox",
+  props: ["ProductComponent"],
   methods: {
     showDetails() {
       this.$router.push({
         name: "ShowDetails",
-        params: { id: this.Component.id },
+        params: { id: this.ProductComponent.id },
       });
     },
   },
@@ -64,7 +64,7 @@ a {
   font-size: 0.9rem;
 }
 
-#edit-Component {
+#edit-ProductComponent {
   float: right;
 }
 </style>
