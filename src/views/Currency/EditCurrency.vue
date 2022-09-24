@@ -9,14 +9,18 @@
     <div class="row">
       <div class="col-3"></div>
       <div class="col-md-6 px-5 px-md-0">
-        <form v-if="Currency">
+        <form v-if="currency">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" v-model="Currency.name" required>
+            <input type="text" class="form-control" v-model="currency.name" required>
+          </div>
+          <div class="form-group">
+            <label>Iso Code</label>
+            <input type="text" class="form-control" v-model="currency.isoCode" required>
           </div>
           <div class="form-group">
             <label>USD Conversion Rate</label>
-            <input type="number" class="form-control" v-model="Currency.price" required>
+            <input type="number" class="form-control" v-model="currency.usdConversionRate" required>
           </div>
           <button type="button" class="btn btn-primary" @click="editCurrency">Submit</button>
         </form>
@@ -30,16 +34,16 @@
 export default {
   data(){
     return {
-      Currency: null
+      currency: null
     }
   },
-  props : ["baseURL", "Currencys", "categories"],
+  props : ["baseURL", "currencies"],
   methods : {
     async editCurrency() {
-      axios.patch(this.baseURL+"Currency/"+this.id, this.Currency)
+      axios.patch(this.baseURL+"currencies/"+this.id, this.currency)
       .then(res => {
         //sending the event to parent to handle
-        this.$emit("fetchData");
+        this.$emit("fetchCurrencies");
         this.$router.push({name : 'AdminCurrency'});
         swal({
           text: "Currency Updated Successfully!",
@@ -56,7 +60,7 @@ export default {
     //   return;
     // }
     this.id = this.$route.params.id;
-    this.Currency = this.Currencys.find(Currency => Currency.id == this.id);
+    this.currency = this.currencies.find(currency => currency.id == this.id);
   }
 }
 </script>

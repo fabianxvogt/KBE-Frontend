@@ -7,11 +7,6 @@
       </div>
       <div class="col-md-6 col-12 pt-3 pt-md-0">
         <h4>{{ currency.name }}</h4>
-        <h6 class="category font-italic">{{ category.categoryName }}</h6>
-        <h6 class="font-weight-bold">$ {{ currency.price }}</h6>
-        <p>
-          {{ currency.description }}
-        </p>
 
         <div class="d-flex flex-row justify-content-between">
           <div class="input-group col-md-3 col-4 p-0">
@@ -19,18 +14,6 @@
               <span class="input-group-text" id="basic-addon1">Quantity</span>
             </div>
             <input class="form-control" type="number" v-bind:value="quantity" />
-          </div>
-
-          <div class="input-group col-md-3 col-4 p-0">
-            <button
-              type="button"
-              id="add-to-cart-button"
-              class="btn"
-              @click="addToCart(this.id)"
-            >
-              Add to Cart
-              <ion-icon name="cart-outline" v-pre></ion-icon>
-            </button>
           </div>
         </div>
 
@@ -49,15 +32,12 @@
           id="wishlist-button"
           class="btn mr-3 p-1 py-0"
           :class="{ currency_added_wishlist: isAddedToWishlist }"
-          @click="addToWishList(this.id)"
         >
-          {{ wishlistString }}
         </button>
         <button
           id="show-cart-button"
           type="button"
           class="btn mr-3 p-1 py-0"
-          @click="listCartItems()"
         >
           Show Cart
 
@@ -82,76 +62,14 @@ export default {
       quantity: 1,
     };
   },
-  props: ["baseURL", "currencies", "categories"],
+  props: ["baseURL", "currencies"],
   methods: {
-    addToWishList(currencyId) {
-      axios
-        .post(`${this.baseURL}wishlist/add?token=${this.token}`, {
-          id: currencyId,
-        })
-        .then(
-          (response) => {
-            if (response.status == 201) {
-              this.isAddedToWishlist = true;
-              this.wishlistString = "Added to WishList";
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    },
-    addToCart(currencyId) {
-      if (!this.token) {
-        swal({
-          text: "Please log in first!",
-          icon: "error",
-        });
-        return;
-      }
-      axios
-        .post(`${this.baseURL}cart/add?token=${this.token}`, {
-          currencyId: currencyId,
-          quantity: this.quantity,
-        })
-        .then(
-          (response) => {
-            if (response.status == 201) {
-              swal({
-                text: "Currency Added to the cart!",
-                icon: "success",
-                closeOnClickOutside: false,
-              });
-              // refresh nav bar
-              this.$emit("fetchData");
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    },
-
-    listCartItems() {
-      axios.get(`${this.baseURL}cart/?token=${this.token}`).then(
-        (response) => {
-          if (response.status === 200) {
-            this.$router.push("/cart");
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    },
   },
   mounted() {
     this.id = this.$route.params.id;
     this.currency = this.currencies.find((currency) => currency.id == this.id);
-    this.category = this.categories.find(
-      (category) => category.id == this.currency.categoryId
-    );
-    this.token = localStorage.getItem("token");
+
+    //this.token = localStorage.getItem("token");
   },
 };
 </script>

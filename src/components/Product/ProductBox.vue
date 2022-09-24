@@ -13,7 +13,7 @@
       >
       <p class="card-text"><sup>$</sup>{{ product.price }}</p>
       <p class="card-text font-italic">
-        {{ product.description.substring(0, 65) }}...
+        {{ (product.description || "").substring(0, 65) }}
       </p>
       <router-link
         id="edit-product"

@@ -1,24 +1,20 @@
-<template>
-  <div class="card h-100 w-100">
-    <div class="embed-responsive embed-responsive-16by9">
-      <img
-        class="card-img-top embed-responsive-item"
-        :src="Currency.imageURL"
-        alt="Currency Image"
-      />
-    </div>
+<template>  
+  <div class="card h-100 w-100" style="align-content:center">
     <div class="card-body">
-      <router-link :to="{ name: 'ShowDetails', params: { id: Currency.id } }"
-        ><h5 class="card-title">{{ Currency.name }}</h5></router-link
-      >
-      <p class="card-text"><sup>$</sup>{{ Currency.price }}</p>
-      <p class="card-text font-italic">
-        {{ Currency.description.substring(0, 65) }}...
-      </p>
+      <router-link :to="{ name: 'ShowCurrencyDetails', params: { id: currency.id } }" style="width: 200px;">
+        <h5 class="card-title">{{ currency.name }}</h5>
+      </router-link>
+      <div style="width: 100px;">
+        {{ currency.isoCode }}
+      </div>
+      <div style="width: 200px;">
+        {{ currency.usdConversionRate }}
+      </div>
       <router-link
-        id="edit-Currency"
-        :to="{ name: 'EditCurrency', params: { id: Currency.id } }"
-        v-show="$route.name == 'AdminCurrency'"
+        id="edit-currency"
+        :to="{ name: 'EditCurrency', params: { id: currency.id } }"
+        v-show="$route.name == 'AdminCurrency'" 
+        style="width: 100px;"
       >
         Edit
       </router-link>
@@ -29,12 +25,12 @@
 <script>
 export default {
   name: "CurrencyBox",
-  props: ["Currency"],
+  props: ["currency"],
   methods: {
     showDetails() {
       this.$router.push({
-        name: "ShowDetails",
-        params: { id: this.Currency.id },
+        name: "ShowCurrencyDetails",
+        params: { id: this.currency.id },
       });
     },
   },
@@ -48,20 +44,28 @@ export default {
 
 a {
   text-decoration: none;
+  padding:0
 }
+
 
 .card-title {
   color: #484848;
   font-size: 1.1rem;
   font-weight: 400;
+  margin: 0;
 }
 
 .card-title:hover {
   font-weight: bold;
 }
 
-.card-text {
-  font-size: 0.9rem;
+.card-body {
+  padding: 10px 40px 10px 40px;
+  font-size: 1rem;
+  display: flex; 
+  flex-direction:row; 
+  border: 1px solid black; 
+  justify-content: space-between; 
 }
 
 #edit-Currency {

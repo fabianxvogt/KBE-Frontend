@@ -11,12 +11,16 @@
       <div class="col-md-6 px-5 px-md-0">
         <form>
           <div class="form-group">
+            <label>ISO Code</label>
+            <input type="text" class="form-control" v-model="isoCode" required>
+          </div>          
+          <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" v-model="name" required>
           </div>
           <div class="form-group">
             <label>USD Conversion Rate</label>
-            <input type="text" class="form-control" v-model="description" required>
+            <input type="text" class="form-control" v-model="usdConversionRate" required>
           </div>
           <button type="button" class="btn btn-primary" @click="addCurrency">Submit</button>
         </form>
@@ -31,28 +35,24 @@ export default {
   data(){
     return {
       id : null,
-      categoryId : null,
+      isoCode : null,
       name : null,
-      description : null,
-      imageURL : null,
-      price : null
+      usdConversionRate : null
     }
   },
-  props : ["baseURL", "Currencies", "categories"],
+  props : ["baseURL", "currencies"],
   methods : {
     async addCurrency() {
       const newCurrency = {
         id : this.id,
-        categoryId : this.categoryId,
+        isoCode : this.isoCode,
         name : this.name,
-        description : this.description,
-        imageURL : this.imageURL,
-        price : this.price
+        usdConversionRate : this.usdConversionRate
       }
 
       await axios({
         method: 'post',
-        url: this.baseURL+"Currency",
+        url: this.baseURL+"currencies",
         data : JSON.stringify(newCurrency),
         headers: {
           'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ export default {
       })
       .then(res => {
         //sending the event to parent to handle
-        this.$emit("fetchData");
+        this.$emit("fetchCurrencies");
         this.$router.push({name : 'AdminCurrency'});
         swal({
           text: "Currency Added Successfully!",

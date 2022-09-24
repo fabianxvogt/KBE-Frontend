@@ -10,7 +10,9 @@
       :baseURL="baseURL"
       :products="products"
       :categories="categories"
+      :currencies="currencies"
       @fetchData="fetchData"
+      @fetchCurrencies="fetchCurrencies"
     >
     </router-view>
   </div>
@@ -25,8 +27,9 @@ export default {
     return {
       //baseURL: 'https://limitless-lake-55070.herokuapp.com/', // URL from the demo project
       baseURL: "https://secure-caverns-35338.herokuapp.com/", // Our URL
-      products: null,
-      categories: null,
+      products: [],
+      categories: [],
+      currencies: [],
       key: 0,
       token: null,
       cartCount: 0,
@@ -64,6 +67,12 @@ export default {
         );
       }
     },
+    async fetchCurrencies() {
+      await axios
+        .get(this.baseURL + 'currencies/')          
+        .then((res) => (this.currencies = res.data )) 
+        .catch((err) => console.log(err) );         
+    },
     resetCartCount() {
       this.cartCount = 0;
     },
@@ -71,6 +80,7 @@ export default {
   mounted() {
     this.token = localStorage.getItem('token');
     this.fetchData();
+    this.fetchCurrencies();
   },
 };
 </script>

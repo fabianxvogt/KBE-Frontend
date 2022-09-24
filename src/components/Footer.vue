@@ -1,7 +1,7 @@
 <template>
   <footer>
     <div class="container pt-5">
-      <div class="row" style="align-items: space-between">
+      <div class="row" style="display: flex; flex-direction: row; justify-content: space-between;">
         <div class="col-md-3 col-6">
           <ul style="list-style-type: none">
             <li class="text-light font-weight-bold pb-2">Get to Know Us</li>
