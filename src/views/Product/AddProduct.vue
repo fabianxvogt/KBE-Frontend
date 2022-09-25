@@ -17,6 +17,13 @@
             </select>
           </div>
           <div class="form-group">
+            <label>Component</label>
+            <select class="form-control" v-model="componentId" required>
+              <option v-for="component of components" :key="component.id" :value="component.id">{{component.name}}</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" v-model="name" required>
           </div>
@@ -46,6 +53,7 @@ export default {
     return {
       id : null,
       categoryId : null,
+      componentId : null,
       name : null,
       description : null,
       imageURL : null,
@@ -58,6 +66,7 @@ export default {
       const newProduct = {
         id : this.id,
         categoryId : this.categoryId,
+        componentId : this.componentId,
         name : this.name,
         description : this.description,
         imageURL : this.imageURL,

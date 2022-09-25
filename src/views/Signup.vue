@@ -1,5 +1,4 @@
 <template>
-  HELLO
   <div class="container">
     <!--    Logo Div-->
     <div class="row">
@@ -31,7 +30,7 @@
                   <input
                     type="name"
                     class="form-control"
-                    v-model="firstName"
+                    v-model="firstname"
                     required
                   />
                 </div>
@@ -42,7 +41,7 @@
                   <input
                     type="name"
                     class="form-control"
-                    v-model="lastName"
+                    v-model="lastname"
                     required
                   />
                 </div>
@@ -94,8 +93,8 @@ export default {
   data() {
     return {
       email: null,
-      firstName: null,
-      lastName: null,
+      firstname: null,
+      lastname: null,
       password: null,
       passwordConfirm: null,
     };
@@ -108,8 +107,8 @@ export default {
         // make the post body
         const user = {
           email: this.email,
-          firstName: this.firstName,
-          lastName: this.lastName,
+          firstname: this.firstname,
+          lastname: this.lastname,
           password: this.password,
         };
 

@@ -52,28 +52,14 @@
       <!--      DropDowns-->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a
-            class="nav-link text-light dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Currency
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >EUR</router-link
-            >
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >USD</router-link
-            >
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >YEN</router-link
-            >
+          <div style="padding:8px; width:110px">
+
+          
+          <select :on-change="onCurrencyChanged()" default="USD" class="form-control" v-model="selectedCurrency" >
+            <option v-for="currency of currencies" :key="currency.isoCode" :value="currency">{{currency.isoCode}}</option>
+          </select>
           </div>
+
         </li>
         <li class="nav-item dropdown">
           <a
@@ -164,10 +150,12 @@
 <script>
 export default {
   name: "Navbar",
-  props: ["cartCount"],
+  //props: ["cartCount"],
+  props : [ "baseURL" , "currencies", "selectedCurrency" ],
   data() {
     return {
       token: null,
+      selectedCurrency : null
     };
   },
   methods: {
@@ -182,10 +170,16 @@ export default {
         closeOnClickOutside: false,
       });
     },
+    onCurrencyChanged(currency) {
+      console.log(this.selectedCurrency)
+        this.$emit("changeCurrency", this.selectedCurrency);
+    }
   },
+
   mounted() {
     this.token = localStorage.getItem("token");
   },
+
 };
 </script>
 

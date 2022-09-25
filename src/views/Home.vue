@@ -68,7 +68,7 @@
 
 <style>
   .page-holder {
-    min-height: 100vh;
+    height: 20vh;
   }
 
   .bg-cover {

@@ -1,7 +1,10 @@
 <template>
   <Navbar
     :cartCount="cartCount"
+    :currencies="currencies"
+    :selectedCurrency="selectedCurrency"
     @resetCartCount="resetCartCount"
+    @changeCurrency="changeCurrency"
     v-if="!['Signup', 'Signin'].includes($route.name)"
   />
   <div style="min-height: 60vh">
@@ -11,8 +14,11 @@
       :products="products"
       :categories="categories"
       :currencies="currencies"
+      :components="components"
+      :selectedCurrency="selectedCurrency"
       @fetchData="fetchData"
       @fetchCurrencies="fetchCurrencies"
+      @changeCurrency="changeCurrency"
     >
     </router-view>
   </div>
@@ -30,6 +36,8 @@ export default {
       products: [],
       categories: [],
       currencies: [],
+      components: [],
+      selectedCurrency: null,
       key: 0,
       token: null,
       cartCount: 0,
@@ -46,6 +54,10 @@ export default {
         .then((res) => (this.products = res.data )) 
         .catch((err) => console.log(err) );         
       
+      for (let product of this.products) {
+        product.priceLocal = product.price
+      }
+
       //fetch categories
       await axios   
         .get(this.baseURL + 'category/')       
@@ -67,10 +79,25 @@ export default {
         );
       }
     },
+
+    async changeCurrency(currency) {
+      this.selectedCurrency = currency
+      if (this.selectedCurrency != null) {
+          for (let product of this.products) {
+            product.priceLocal = product.price / this.selectedCurrency.usdConversionRate
+          }
+      }
+    },
     async fetchCurrencies() {
       await axios
         .get(this.baseURL + 'currencies/')          
         .then((res) => (this.currencies = res.data )) 
+        .catch((err) => console.log(err) );         
+    },
+    async fetchComponents() {
+      await axios
+        .get(this.baseURL + 'components/')          
+        .then((res) => (this.components = res.data )) 
         .catch((err) => console.log(err) );         
     },
     resetCartCount() {

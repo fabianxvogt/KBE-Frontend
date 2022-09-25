@@ -9,7 +9,7 @@
       </div>
     </div>
     <div class="row">
-        <div v-for="ProductComponent of ProductComponents" :key="ProductComponent.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+        <div v-for="ProductComponent of components" :key="ProductComponent.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
           <ProductComponentBox :ProductComponent="ProductComponent">
           </ProductComponentBox>
         </div>
@@ -22,7 +22,7 @@ import ProductComponentBox from '../../components/ProductComponent/ProductCompon
 export default {
   name: 'ProductComponent',
   components : {ProductComponentBox},
-  props : [ "baseURL" , "ProductComponents" ],
+  props : [ "baseURL" , "components" ],
   mounted(){
     // if (this.$route.name=='AdminProductComponent' && !localStorage.getItem('token')) {
     //   this.$router.push({name : 'Signin'});
