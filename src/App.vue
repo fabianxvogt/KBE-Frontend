@@ -2,7 +2,9 @@
   <Navbar
     :cartCount="cartCount"
     :currencies="currencies"
+    :selectedCurrency="selectedCurrency"
     @resetCartCount="resetCartCount"
+    @changeCurrency="changeCurrency"
     v-if="!['Signup', 'Signin'].includes($route.name)"
   />
   <div style="min-height: 60vh">
@@ -13,8 +15,10 @@
       :categories="categories"
       :currencies="currencies"
       :components="components"
+      :selectedCurrency="selectedCurrency"
       @fetchData="fetchData"
       @fetchCurrencies="fetchCurrencies"
+      @changeCurrency="changeCurrency"
     >
     </router-view>
   </div>
@@ -50,6 +54,10 @@ export default {
         .then((res) => (this.products = res.data )) 
         .catch((err) => console.log(err) );         
       
+      for (let product of this.products) {
+        product.priceLocal = product.price
+      }
+
       //fetch categories
       await axios   
         .get(this.baseURL + 'category/')       
@@ -69,6 +77,15 @@ export default {
             console.log(error);
           }
         );
+      }
+    },
+
+    async changeCurrency(currency) {
+      this.selectedCurrency = currency
+      if (this.selectedCurrency != null) {
+          for (let product of this.products) {
+            product.priceLocal = product.price / this.selectedCurrency.usdConversionRate
+          }
       }
     },
     async fetchCurrencies() {

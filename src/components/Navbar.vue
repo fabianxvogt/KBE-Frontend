@@ -53,10 +53,10 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <div style="padding:8px; width:110px">
-            <div style="color: white;"> 
-          </div>
-          <select default="USD" class="form-control" v-model="selectedCurrencyIsoCode" >
-            <option v-for="currency of currencies" :key="currency.isoCode" :value="currency.isoCode">{{currency.isoCode}}</option>
+
+          
+          <select :on-change="onCurrencyChanged()" default="USD" class="form-control" v-model="selectedCurrency" >
+            <option v-for="currency of currencies" :key="currency.isoCode" :value="currency">{{currency.isoCode}}</option>
           </select>
           </div>
 
@@ -151,11 +151,11 @@
 export default {
   name: "Navbar",
   //props: ["cartCount"],
-  props : [ "baseURL" , "currencies" ],
+  props : [ "baseURL" , "currencies", "selectedCurrency" ],
   data() {
     return {
       token: null,
-      selectedCurrencyIsoCode : 'USD',
+      selectedCurrency : null
     };
   },
   methods: {
@@ -170,10 +170,16 @@ export default {
         closeOnClickOutside: false,
       });
     },
+    onCurrencyChanged(currency) {
+      console.log(this.selectedCurrency)
+        this.$emit("changeCurrency", this.selectedCurrency);
+    }
   },
+
   mounted() {
     this.token = localStorage.getItem("token");
   },
+
 };
 </script>
 
