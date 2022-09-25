@@ -53,11 +53,10 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <div style="padding:8px; width:110px">
-            <div style="color: white;">
-            Currency          
+            <div style="color: white;"> 
           </div>
-          <select class="form-control" v-model="currencyId" required>
-                <option v-for="currency of currencies" :key="currency.id" :value="currency.id">{{currency.isoCode}}</option>
+          <select default="USD" class="form-control" v-model="selectedCurrencyIsoCode" >
+            <option v-for="currency of currencies" :key="currency.isoCode" :value="currency.isoCode">{{currency.isoCode}}</option>
           </select>
           </div>
 
@@ -156,7 +155,7 @@ export default {
   data() {
     return {
       token: null,
-      currencyId : null,
+      selectedCurrencyIsoCode : 'USD',
     };
   },
   methods: {
