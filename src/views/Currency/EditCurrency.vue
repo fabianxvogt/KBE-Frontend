@@ -40,7 +40,7 @@ export default {
   props : ["baseURL", "currencies"],
   methods : {
     async editCurrency() {
-      axios.patch(this.baseURL+"currencies/"+this.id, this.currency)
+      axios.patch(this.baseURL+"currencies/"+this.isoCode, this.currency)
       .then(res => {
         //sending the event to parent to handle
         this.$emit("fetchCurrencies");
@@ -59,8 +59,8 @@ export default {
     //   this.$router.push({name : 'Signin'});
     //   return;
     // }
-    this.id = this.$route.params.id;
-    this.currency = this.currencies.find(currency => currency.id == this.id);
+    this.isoCode = this.$route.params.isoCode;
+    this.currency = this.currencies.find(currency => currency.isoCode == this.isoCode);
   }
 }
 </script>

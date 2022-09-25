@@ -154,12 +154,12 @@ const routes = [
     component: AddCurrency
   },
   {
-    path: '/admin/currency/:id',
+    path: '/admin/currency/:isoCode',
     name: 'EditCurrency',
     component: EditCurrency,
   },
   {
-    path : '/currency/show/:id',
+    path : '/currency/show/:isoCode',
     name : 'ShowCurrencyDetails',
     component: ShowCurrencyDetails
   },  

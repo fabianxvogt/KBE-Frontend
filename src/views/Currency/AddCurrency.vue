@@ -34,7 +34,6 @@
 export default {
   data(){
     return {
-      id : null,
       isoCode : null,
       name : null,
       usdConversionRate : null
@@ -44,7 +43,6 @@ export default {
   methods : {
     async addCurrency() {
       const newCurrency = {
-        id : this.id,
         isoCode : this.isoCode,
         name : this.name,
         usdConversionRate : this.usdConversionRate

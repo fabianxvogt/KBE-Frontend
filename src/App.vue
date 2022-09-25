@@ -55,6 +55,7 @@ export default {
         .catch((err) => console.log(err) );         
       
       for (let product of this.products) {
+
         product.priceLocal = product.price
       }
 
@@ -84,7 +85,11 @@ export default {
       this.selectedCurrency = currency
       if (this.selectedCurrency != null) {
           for (let product of this.products) {
-            product.priceLocal = product.price / this.selectedCurrency.usdConversionRate
+              await axios   
+              .get(this.baseURL + 'price/product/' + product.id + '?currency='+ this.selectedCurrency.isoCode)       
+              .then((res) => (product.priceLocal = res.data.totalPrice))
+              .catch((err) => console.log(err));
+            //product.priceLocal = product.price / this.selectedCurrency.usdConversionRate
           }
       }
     },
