@@ -12,6 +12,15 @@ import AddProduct from '../views/Product/AddProduct.vue'
 import EditProduct from '../views/Product/EditProduct.vue'
 import ShowDetails from '../views/Product/ShowDetails.vue'
 import Wishlist from '../views/Product/Wishlist.vue'
+import ProductComponent from '../views/ProductComponent/ProductComponent.vue'
+import AddProductComponent from '../views/ProductComponent/AddProductComponent.vue'
+import EditProductComponent from '../views/ProductComponent/EditProductComponent.vue'
+import ShowComponentDetails from '../views/ProductComponent/ShowDetails.vue'
+import Currency from '../views/Currency/Currency.vue'
+import AddCurrency from '../views/Currency/AddCurrency.vue'
+import EditCurrency from '../views/Currency/EditCurrency.vue'
+import ShowCurrencyDetails from '../views/Currency/ShowCurrencyDetails.vue'
+
 import Cart from '../views/Cart/Cart.vue'
 import Checkout from '../views/Checkout/Checkout.vue'
 import Order from '../views/Orders/Order.vue'
@@ -50,6 +59,32 @@ const routes = [
     name : 'AddImage',
     component : AddImage
   },
+  //ProductComponent routes
+  {
+    path: '/component',
+    name: 'ProductComponent',
+    component: ProductComponent
+  },
+  {
+    path: '/admin/component',
+    name: 'AdminProductComponent',
+    component: ProductComponent
+  },
+  {
+    path: '/admin/component/add',
+    name: 'AddProductComponent',
+    component: AddProductComponent
+  },
+  {
+    path: '/admin/component/:id',
+    name: 'EditProductComponent',
+    component: EditProductComponent,
+  },
+  {
+    path : '/component/show/:id',
+    name : 'ShowDetails',
+    component: ShowComponentDetails
+  },
   //Product routes
   {
     path: '/product',
@@ -76,6 +111,58 @@ const routes = [
     name : 'ShowDetails',
     component: ShowDetails
   },
+    //ProductComponent routes
+  {
+    path: '/component',
+    name: 'ProductComponent',
+    component: ProductComponent
+  },
+  {
+    path: '/admin/component',
+    name: 'AdminProductComponent',
+    component: ProductComponent
+  },
+  {
+    path: '/admin/component/add',
+    name: 'AddProductComponent',
+    component: AddProductComponent
+  },
+  {
+    path: '/admin/component/:id',
+    name: 'EditProductComponent',
+    component: EditProductComponent,
+  },
+  {
+    path : '/component/show/:id',
+    name : 'ShowDetails',
+    component: ShowComponentDetails
+  },
+  // Currency routes
+  {
+    path: '/currency',
+    name: 'Currency',
+    component: Currency
+  },
+  {
+    path: '/admin/currency',
+    name: 'AdminCurrency',
+    component: Currency
+  },
+  {
+    path: '/admin/currency/add',
+    name: 'AddCurrency',
+    component: AddCurrency
+  },
+  {
+    path: '/admin/currency/:id',
+    name: 'EditCurrency',
+    component: EditCurrency,
+  },
+  {
+    path : '/currency/show/:id',
+    name : 'ShowCurrencyDetails',
+    component: ShowCurrencyDetails
+  },  
   //Category routes
   {
     path: '/category',
