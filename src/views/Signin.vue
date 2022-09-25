@@ -68,7 +68,6 @@
 export default {
   name: "Signin",
   props: ["baseURL"],
-  props: [],
   data() {
     return {
       email: null,
@@ -89,9 +88,9 @@ export default {
 
       
       await axios
-        .post(`${this.baseURL}user/signIn`, user)
+        .post(`${this.baseURL}user/signin`, user)
         .then((res) => {
-          localStorage.setItem("token", res.data.token);
+          //localStorage.setItem("token", res.data.token);
           this.$emit("fetchData");
           this.$router.push({ name: "Home" });
         })
