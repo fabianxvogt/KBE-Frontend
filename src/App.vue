@@ -1,6 +1,7 @@
 <template>
   <Navbar
     :cartCount="cartCount"
+    :currencies="currencies"
     @resetCartCount="resetCartCount"
     v-if="!['Signup', 'Signin'].includes($route.name)"
   />
@@ -11,6 +12,7 @@
       :products="products"
       :categories="categories"
       :currencies="currencies"
+      :components="components"
       @fetchData="fetchData"
       @fetchCurrencies="fetchCurrencies"
     >
@@ -30,6 +32,7 @@ export default {
       products: [],
       categories: [],
       currencies: [],
+      components: [],
       key: 0,
       token: null,
       cartCount: 0,
@@ -71,6 +74,12 @@ export default {
       await axios
         .get(this.baseURL + 'currencies/')          
         .then((res) => (this.currencies = res.data )) 
+        .catch((err) => console.log(err) );         
+    },
+    async fetchComponents() {
+      await axios
+        .get(this.baseURL + 'components/')          
+        .then((res) => (this.components = res.data )) 
         .catch((err) => console.log(err) );         
     },
     resetCartCount() {

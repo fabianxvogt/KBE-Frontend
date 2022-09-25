@@ -1,5 +1,4 @@
 <template>
-  HELLO
   <div class="container">
     <!--    Logo Div-->
     <div class="row">

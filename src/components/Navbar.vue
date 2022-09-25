@@ -64,15 +64,11 @@
             Currency
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >EUR</router-link
-            >
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >USD</router-link
-            >
-            <router-link class="dropdown-item" :to="{ name: 'Home' }"
-              >YEN</router-link
-            >
+            <div v-for="currency of currencies" :key="currency.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+              <div class="dropdown-item" :to="{ name: currency.isoCode }">
+                {{ currency.isoCode }}
+              </div>
+            </div>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -164,7 +160,8 @@
 <script>
 export default {
   name: "Navbar",
-  props: ["cartCount"],
+  //props: ["cartCount"],
+  props : [ "baseURL" , "currencies" ],
   data() {
     return {
       token: null,
