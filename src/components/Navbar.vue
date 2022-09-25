@@ -52,24 +52,15 @@
       <!--      DropDowns-->
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
-          <a
-            class="nav-link text-light dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Currency
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <div v-for="currency of currencies" :key="currency.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
-              <div class="dropdown-item" :to="{ name: currency.isoCode }">
-                {{ currency.isoCode }}
-              </div>
-            </div>
+          <div style="padding:8px; width:110px">
+            <div style="color: white;">
+            Currency          
           </div>
+          <select class="form-control" v-model="currencyId" required>
+                <option v-for="currency of currencies" :key="currency.id" :value="currency.id">{{currency.isoCode}}</option>
+          </select>
+          </div>
+
         </li>
         <li class="nav-item dropdown">
           <a
@@ -165,6 +156,7 @@ export default {
   data() {
     return {
       token: null,
+      currencyId : null,
     };
   },
   methods: {

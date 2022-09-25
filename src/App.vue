@@ -33,6 +33,7 @@ export default {
       categories: [],
       currencies: [],
       components: [],
+      selectedCurrency: null,
       key: 0,
       token: null,
       cartCount: 0,
