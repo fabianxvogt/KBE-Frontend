@@ -185,9 +185,9 @@ export default {
 
 <style scoped>
 #logo {
-  width: 150px;
-  margin-left: 20px;
-  margin-right: 20px;
+  width: 280px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .nav-link {
@@ -195,8 +195,8 @@ export default {
 }
 
 #search-button-navbar {
-  background-color: #febd69;
-  border-color: #febd69;
+  background-color: #bbf3bc;
+  border-color: #bbf3bc;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
 }
