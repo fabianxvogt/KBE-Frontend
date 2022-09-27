@@ -57,7 +57,7 @@ a {
 }
 
 #logo {
-  width: 150px;
+  width: 300px;
 }
 
 footer {
