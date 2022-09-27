@@ -1,7 +1,7 @@
 <template>  
   <div class="card h-100 w-100" style="align-content:center">
     <div class="card-body">
-      <router-link :to="{ name: 'ShowCurrencyDetails', params: { id: currency.id } }" style="width: 200px;">
+      <router-link :to="{ name: 'ShowCurrencyDetails', params: { isoCode: currency.isoCode } }" style="width: 200px;">
         <h5 class="card-title">{{ currency.name }}</h5>
       </router-link>
       <div style="width: 100px;">
@@ -12,12 +12,13 @@
       </div>
       <router-link
         id="edit-currency"
-        :to="{ name: 'EditCurrency', params: { id: currency.id } }"
+        :to="{ name: 'EditCurrency', params: { isoCode: currency.isoCode } }"
         v-show="$route.name == 'AdminCurrency'" 
-        style="width: 100px;"
+        style="width: 100;"
       >
         Edit
       </router-link>
+      <a style="width: 100;" @click="deleteCurrency({currency})">Delete</a>
     </div>
   </div>
 </template>
@@ -30,8 +31,12 @@ export default {
     showDetails() {
       this.$router.push({
         name: "ShowCurrencyDetails",
-        params: { id: this.currency.id },
+        params: { isoCode: this.currency.isoCode },
       });
+    },
+
+    deleteCurrency(currency) {
+
     },
   },
 };

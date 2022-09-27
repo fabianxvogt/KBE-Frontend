@@ -66,8 +66,8 @@ export default {
   methods: {
   },
   mounted() {
-    this.id = this.$route.params.id;
-    this.currency = this.currencies.find((currency) => currency.id == this.id);
+    this.isoCode = this.$route.params.isoCode;
+    this.currency = this.currencies.find((currency) => currency.isoCode == this.isoCode);
 
     //this.token = localStorage.getItem("token");
   },

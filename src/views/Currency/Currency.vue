@@ -26,7 +26,7 @@
     </div>
     <div style="display:flex; flex-direction: row; justify-content: center;">
       <div class="currency-table" style="align-self: center; justify-content:center; display: flex; flex-direction: column; margin:0">
-        <div v-for="currency of currencies" :key="currency.id" style="padding:0px">
+        <div v-for="currency of currencies" :key="currency.isoCode" style="padding:0px">
           <CurrencyBox :currency="currency">
           </CurrencyBox>
         </div>
