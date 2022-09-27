@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <!--    Logo-->
-    <router-link class="navbar-brand" :to="{ name: 'Home' }">
-      <img id="logo" src="../assets/icon.png" />
+    <router-link class="navbar-brand" :to="{ name: 'Home' }" >
+      <img id="logo" src="../assets/icon.png"/>
     </router-link>
 
     <!--    Burger Button-->
